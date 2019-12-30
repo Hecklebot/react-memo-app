@@ -29,6 +29,17 @@ class App extends React.Component {
     }
   }
 
+  handleKeyPress = (e) => {
+    
+    if(e.key === "Enter" && e.shiftKey) {
+      return false;
+    }
+
+    if(e.key === 'Enter') {
+      this.handleCreate();
+    }
+  }
+
   handleCreate = (e) => {
     this.setState(prevState => {
       const { memos, inputTitle, inputContent } = prevState;
@@ -63,6 +74,7 @@ class App extends React.Component {
           content={inputContent}
           onChange={handleChange}
           onCreate={handleCreate}
+          onKeyPress={this.handleKeyPress}
         />
         <MemoList
           memos={memos}
